@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}ロケーションの新規作成{% endblock title %}
+
+{% block content %}
+  <form class="well form-horizontal" action="{{ url('locations') }}" method="POST">
+    <fieldset>
+      <div class="form-group">
+        <div class="col-sm-12">
+          {% csrf_token %}
+          <input type="hidden" name="_method" value="NEW">
+
+          ロケーションID： 設定しない場合は自動的に設定されます。
+          <input type="text" class="form-control" id="location_id" name="location_id" value="{{ page.form.location_id.value()|default('', true) }}" size="17" placeholder="" autofocus >
+
+          ロケーション名：
+          <input type="text" class="form-control" id="name" name="name" value="{{ page.form.name.value()|default('', true) }}" size="17" placeholder="" autofocus required>
+
+          注記；
+          <input type="text" class="form-control" id="note" name="note" value="{{ page.form.note.value()|default('', true) }}" size="17" placeholder="" >
+
+          <input type="submit" value="ロケーションを登録する">
+        </div>
+      </div>
+    </fieldset>
+  </form>
+{% endblock content %}

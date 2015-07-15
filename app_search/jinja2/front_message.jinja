@@ -1,0 +1,15 @@
+{% if page is defined %}
+{% if page["message"] is defined %}
+<div class="alert-wrap">
+{% for s in ['success','info','warning','danger'] %}
+  {% set msg = page["message"] %}
+  {% if msg[s] %}
+    <div class="alert alert-{{s}}">
+        <button type="button" data-dismiss="alert" class="close close-{{s}}">&times;</button>
+        {{ msg[s] }}
+    </div>
+  {% endif %}
+{% endfor %}
+</div>
+{% endif %}
+{% endif %}

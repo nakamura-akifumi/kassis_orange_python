@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}ログイン{% endblock title %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+  <form class="well form-horizontal" action="{{ url('django.contrib.auth.views.login') }}" method="POST">
+    {% csrf_token %}
+    <fieldset>
+      <div class="form-group">
+        <div class="col-sm-12">
+
+        ログインID：
+      <input type="text" class="form-control" id="id_username" name="username" value="{{ form.username.value()|default('', true) }}" size="255" placeholder="" autofocus  required>
+
+        パスワード：
+      <input type="password" class="form-control" id="id_password" name="password" value="" size="255" placeholder="" required >
+
+    <input type="submit" value="ログイン" />
+    <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</form>
+
+{% endblock content %}

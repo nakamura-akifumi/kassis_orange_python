@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}ロケーションの一覧{% endblock title %}
+
+{% block content %}
+
+  {% include "search/pagination_block.jinja" %}
+
+    <a href="{{ url('new_location') }}">
+        ロケーションの新規作成
+    </a>
+
+    <table class="table table-striped table-bordered">
+      <tbody>
+        {% for l in locations %}
+        <tr>
+          <td>
+            <a href="{{ url('location', pk = l.record_identifier) }}">{{ l.id }}</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  {% include "search/pagination_block.jinja" %}
+
+{% endblock content %}

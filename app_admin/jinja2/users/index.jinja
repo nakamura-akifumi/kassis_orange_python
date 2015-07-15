@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}利用者の一覧{% endblock title %}
+
+{% block content %}
+
+  {% include "search/pagination_block.jinja" %}
+
+    <a href="{{ url('new_user') }}">
+        利用者の新規作成
+    </a>
+
+    <table class="table table-striped table-bordered">
+      <tbody>
+        {% for u in users %}
+        <tr>
+          <td>
+            <a href="{{ url('user', pk=u.id) }}">{{ u.username }}</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  {% include "search/pagination_block.jinja" %}
+
+{% endblock content %}

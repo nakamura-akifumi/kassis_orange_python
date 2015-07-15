@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}NDL新着情報からのインポート{% endblock title %}
+
+{% block content %}
+  <form class="well form-horizontal" action="{{ url('m_import_from_ndl_rss') }}" method="POST">
+    <fieldset>
+    URLを入力
+      <div class="form-group">
+        <div class="col-sm-12">
+          {% csrf_token %}
+          <input type="text" class="form-control" id="url" name="url" value="{{ page.url }}" placeholder="" autofocus required>
+          <input type="submit" value="Import">
+        </div>
+      </div>
+    </fieldset>
+  </form>
+{% endblock content %}

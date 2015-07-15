@@ -1,0 +1,61 @@
+<script type="text/javascript">
+  function make_thumbnail_link( image, book ) {
+    var link = '';
+    var thumbnail = image.thumbnail.replace('zoom=5', 'zoom=1');
+    if ( document.location.protocol == 'https:' ) {
+      var parser = document.createElement('a');
+      parser.href = thumbnail;
+      parser.protocol = 'https:';
+      parser.hostname = 'encrypted.google.com';
+      thumbnail = parser.href;
+    }
+    if (thumbnail) {
+      var link = '<img src="' + thumbnail + '" alt="' + book.volumeInfo.title + '" class="biblio-image" />';
+      if (book.accessInfo && book.accessInfo.viewability != "NO_PAGES") {
+       	var preview = book.volumeInfo.previewLink;
+      }
+      link += '<br /><p>Google Books</p>';
+    }
+    var thumb_element = document.getElementById('gbsthumbnail');
+    if (thumb_element) {
+      thumb_element.innerHTML = link;
+    }
+  }
+  function addTheCover(booksInfo){
+    jQuery(function(){
+      var link = '';
+      for (i in booksInfo.items) {
+        var book = booksInfo.items[i];
+        var image = book.volumeInfo.imageLinks;
+        if (image && image.thumbnail != undefined) {
+          make_thumbnail_link(image, book);
+	} else {
+	  var self_url = book.selfLink;
+	  jQuery.ajax({
+	    url: self_url,
+	    async: false
+	  }).done( function(data) {
+	    var image = data.volumeInfo.imageLinks;
+            if (image && image.thumbnail != undefined) {
+              make_thumbnail_link(image, data);
+	    }
+	  });
+	}
+      }
+      var thumb_element = document.getElementById('gbsthumbnail');
+      if (thumb_element.innerHTML === "") {
+          thumb_element.innerHTML = 'NoImage';
+      }
+    });
+  }
+</script>
+{% with %}
+  {% if 'isbn' in m and m.isbn != '' %}
+    {% set isbn = m.isbn %}
+    <script src="https://www.googleapis.com/books/v1/volumes?q=isbn:{{ isbn }}&amp;callback=addTheCover"></script>
+    {% else %}
+    NoImage
+    {% endif %}
+{% endwith %}
+
+<div id="gbsthumbnail" class="biblio-image"></div>

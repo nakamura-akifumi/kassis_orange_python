@@ -1,0 +1,27 @@
+ユーザ名；
+<input type="text" class="form-control" id="username" name="username" value="{{ page.form.username.value()|default('', true) }}" size="255" placeholder="" autofocus required>
+
+フルネーム；
+<input type="text" class="form-control" id="full_name" name="full_name" value="{{ page.profile_form.full_name.value()|default('', true) }}" size="255" placeholder="" autofocus >
+
+フルネームヨミ；
+<input type="text" class="form-control" id="full_name_transcription" name="full_name_transcription" value="{{ page.profile_form.full_name_transcription.value()|default('', true) }}" size="255" placeholder="" >
+
+利用者券番号；
+<input type="text" class="form-control" id="card_number" name="card_number" value="{{ page.profile_form.card_number.value()|default('', true) }}" size="255" placeholder="" >
+
+パスワード；
+<input type="text" class="form-control" id="password" name="password" value="{{ page.form.password.value()|default('', true) }}" size="255" placeholder="" >
+
+アクティブ？；
+<input type="checkbox" class="form-control" name="is_active" value="is_active" {{ page.form.is_active.value()|checked() }}>
+
+スタッフ？；
+<input type="checkbox" class="form-control" name="is_staff" value="is_staff" {{ page.form.is_staff.value()|checked() }}>
+
+管理者？；
+<input type="checkbox" class="form-control" name="is_superuser" value="is_superuser" {{ page.form.is_superuser.value()|checked() }}>
+
+メールアドレス；
+<input type="email" class="form-control" id="email" name="email" value="{{ page.form.email.value()|default('', true) }}" size="255" placeholder="" >
+

@@ -1,0 +1,11 @@
+  <form class="form-inline" action="{{ url('search_results') }}" method="GET">
+    <fieldset>
+    検索語を入力
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" id="q" name="q" value="{{ page.q }}" size="24" placeholder="検索語" autofocus>
+          <input type="submit" value="検索" class="btn btn-primary">
+        </div>
+      </div>
+    </fieldset>
+  </form>

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}利用者の修正{% endblock title %}
+
+{% block content %}
+  <form class="well form-horizontal" action="{{ url('user', pk = page.id) }}" method="POST">
+    <fieldset>
+      <div class="form-group">
+        <div class="col-sm-12">
+          {% csrf_token %}
+          <input type="hidden" name="_method" value="EDIT">
+
+          {% include "users/form_block.jinja" %}
+
+          <input type="submit" value="更新">
+        </div>
+      </div>
+    </fieldset>
+  </form>
+{% endblock content %}

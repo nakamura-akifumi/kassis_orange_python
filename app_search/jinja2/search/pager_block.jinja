@@ -1,0 +1,28 @@
+{% if page_list %}
+<div class="paging paging-top">
+  <ul class="paginglist">
+  {% for page_data in page_list %}
+    {% if page_data['page_num'] %}
+      {% if page_data['span_class'] == 'short_active' %}
+        <li class="pagingitem hidden-xs"><span class="btn pagingbtn currentpage">{{ page_data['page_num'] }}</span></li>
+      {% else %}
+        <li class="pagingitem hidden-xs"><a class="btn pagingbtn" href="javascript:pageChange('{{ page_data['start'] }}');"><span class="{{ page_data['span_class'] }}">{{ page_data['page_num'] }}</span></a></li>
+      {% endif %}
+    {% else %}
+      <li class="pagingitem hidden-xs"><a class="btn pagingbtn" href="javascript:pageChange('{{ page_data['start'] }}');"><span aria-hidden="true">
+      {% if page_data['alt'] == 'previous' %}
+      &lsaquo;</span><span class="sr-only">Previous
+      {% elif page_data['alt'] == 'next' %}
+      &rsaquo;</span><span class="sr-only">Next
+      {% elif page_data['alt'] == 'head' %}
+      &laquo;</span><span class="sr-only">Head
+      {% elif page_data['alt'] == 'end' %}
+      &raquo;</span><span class="sr-only">End
+      {% endif %}
+      </span></a></li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+</div>
+{% endif %}
+

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}詳細{% endblock title %}
+
+{% block content %}
+<div class="row">
+<div class="col-md-9">
+
+  <h2>詳細情報</h2>
+  <table class="table">
+      <tbody>
+        <tr>
+          <td>ユーザID</td>
+          <td>{{ u.username }}</td>
+        </tr>
+        <tr>
+          <td>フルネーム</td>
+          <td>{{ p.full_name }}</td>
+        </tr>
+        <tr>
+          <td>フルネームヨミ</td>
+          <td>{{ p.full_name_transcription }}</td>
+        </tr>
+        <tr>
+          <td>利用券番号</td>
+          <td>{{ p.card_number }}</td>
+        </tr>
+        <tr>
+          <td>email</td>
+          <td>{{ u.email }}</td>
+        </tr>
+        <tr>
+          <td>is_superuser?</td>
+          <td>{{ u.is_superuser }}</td>
+        </tr>
+        <tr>
+          <td>is_staff?</td>
+          <td>{{ u.is_staff }}</td>
+        </tr>
+        <tr>
+          <td>is_active?</td>
+          <td>{{ u.is_active }}</td>
+        </tr>
+
+        <tr>
+          <td>情報作成日時</td>
+          <td>{{ u.date_joined|datetimeformat }}</td>
+        </tr>
+        <tr>
+          <td>最終ログイン日時</td>
+          <td>{% if u.last_login %}{{ u.last_login|datetimeformat }}{% endif %}</td>
+        </tr>
+
+      </tbody>
+  </table>
+</div>
+<div class="col-md-3">
+  {% include "search/google_book_thumbnail.jinja" %}
+  <br />
+  <a href="{{ url('edit_user', pk = u.id) }}"> 編集 </a>
+  <form class="well form-horizontal" action="{{ url('user', pk = u.id) }}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="削除">
+  </form>
+
+</div>
+</div>
+{% endblock content %}

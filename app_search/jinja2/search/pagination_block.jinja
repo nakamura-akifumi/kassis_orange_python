@@ -1,0 +1,41 @@
+<ul class="pagination">
+    {% if page.paginate.first is defined %}
+    <li>
+        <a href="javascript:pageChange('{{ page.paginate.first.key }}');" aria-label="First">
+            <span aria-hidden="true">最初</span>
+        </a>
+    </li>
+    {% endif %}
+    {% if page.paginate.previous is defined %}
+    <li>
+        <a href="javascript:pageChange('{{ page.paginate.previous.key }}');" aria-label="Previous">
+            <span aria-hidden="true">前へ</span>
+        </a>
+    </li>
+    {% endif %}
+    {% for o in page.paginate.list %}
+        {% if o.current == "0" %}
+        <li>
+            <a href="javascript:pageChange('{{ o.key }}');">{{ o.display_name }}</a>
+        </li>
+        {% else %}
+        <li class="active">
+            <span>{{ o.display_name }} <span class="sr-only">(current)</span></span>
+        </li>
+        {% endif %}
+    {% endfor %}
+    {% if page.paginate.next is defined %}
+    <li>
+        <a href="javascript:pageChange('{{ page.paginate.next.key }}');" aria-label="Next">
+            <span aria-hidden="true">次へ</span>
+        </a>
+    </li>
+    {% endif %}
+    {% if page.paginate.last is defined %}
+    <li>
+        <a href="javascript:pageChange('{{ page.paginate.last.key }}');" aria-label="Last">
+            <span aria-hidden="true">最後</span>
+        </a>
+    </li>
+    {% endif %}
+</ul>

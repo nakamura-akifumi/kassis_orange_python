@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}詳細{% endblock title %}
+
+{% block content %}
+<div class="row">
+<div class="col-md-9">
+  <p class="lead">{{ m.title }}</p>
+  {% if 'title_transcription' in m %}
+  {{ m.title_transcription }} /
+  {% endif %}
+  {% for a in m.desc_creators %}
+    {{ a.full_name }} {{ a.role }} {% if not loop.last %} , {% endif %}
+  {% endfor %} /
+  {% for a in m.publishers %} {% if not loop.last %} , {% endif %}
+    {{ a.full_name }}
+  {% endfor %}
+
+  <h2>詳細情報</h2>
+  <table class="table">
+      <tbody>
+        <tr>
+          <td>タイトル</td>
+          <td>{{ m.title }}</td>
+        </tr>
+  {% for a in m.creators %}
+        <tr>
+          <td>著者</td>
+          <td>{{ a.full_name }} {% if a.role is defined %} {{ a.role }} {% endif %}</td>
+        </tr>
+  {% endfor %}
+  {% if 'series_title' in m %}
+        <tr>
+          <td>シリーズ名</td>
+          <td>{{ m.series_title }}</td>
+        </tr>
+  {% endif %}
+  {% if 'series_title_transcription' in m %}
+        <tr>
+          <td>シリーズ名(ヨミ)</td>
+          <td>{{ m.series_title_transcription }}</td>
+        </tr>
+  {% endif %}
+  {% for a in m.publishers %}
+        <tr>
+          <td>出版者</td>
+          <td>{{ a.full_name }}</td>
+        </tr>
+        <tr>
+          <td>出版者(ヨミ)</td>
+          <td>{{ a.full_name_transcription }}</td>
+        </tr>
+        <tr>
+          <td>出版地</td>
+          <td>{{ a.location }}</td>
+        </tr>
+  {% endfor %}
+        <tr>
+          <td>出版年</td>
+          <td>{{ m.pub_date }}</td>
+        </tr>
+        <tr>
+          <td>大きさ、容量</td>
+          <td>{{ m.extent }}</td>
+        </tr>
+  {% for a in m.descriptions %}
+        <tr>
+          <td>注記</td>
+          <td>{{ a.content }}</td>
+        </tr>
+  {% endfor %}
+  {% for k in m.identifiers %}
+        <tr>
+          <td>識別子 ({{ k }})</td>
+          <td>{{ m.identifiers[k] }} </td>
+        </tr>
+  {% endfor %}
+  {% if 'price' in m %}
+        <tr>
+          <td>価格</td>
+          <td>{{ m.price }}</td>
+        </tr>
+  {% endif %}
+  {% if 'alternative' in m %}
+        <tr>
+          <td>別タイトル</td>
+          <td>{{ m.alternative }}</td>
+        </tr>
+  {% endif %}
+  {% for v in m.subjects %}
+        <tr>
+          <td>件名</td>
+          <td>{{ v.value }} </td>
+        </tr>
+  {% endfor %}
+  {% for k in m.languages %}
+        <tr>
+          <td>言語</td>
+          <td>{{ m.languages[k] }} ({{ k }})</td>
+        </tr>
+  {% endfor %}
+  {% if 'material' in m %}
+        <tr>
+          <td>資料の形態</td>
+          <td>{{ m.material }}</td>
+        </tr>
+    {% endif %}
+        <tr>
+          <td>情報作成日時</td>
+          <td>{{ m.created_at|datetimeformat }}</td>
+        </tr>
+        <tr>
+          <td>情報更新日時</td>
+          <td>{{ m.updated_at|datetimeformat }}</td>
+        </tr>
+
+      </tbody>
+  </table>
+</div>
+<div class="col-md-3">
+  {% include "search/google_book_thumbnail.jinja" %}
+  <br />
+  <form class="well form-horizontal" action="{{ url('m_show', m_id=m.record_identifier) }}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="削除">
+  </form>
+
+</div>
+</div>
+{% endblock content %}

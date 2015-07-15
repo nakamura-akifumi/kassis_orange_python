@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}NDLからISBNでインポート{% endblock title %}
+
+{% block content %}
+  <form class="well form-horizontal" action="/import_isbn" method="POST">
+    <fieldset>
+    ISBNを入力
+      <div class="form-group">
+        <div class="col-sm-12">
+          {% csrf_token %}
+          <input type="text" class="form-control" id="isbn" name="isbn" value="" size="17" placeholder="ISBN10もしくはISBN13を入力" autofocus required>
+          <input type="submit" value="Import">
+        </div>
+      </div>
+    </fieldset>
+  </form>
+{% endblock content %}

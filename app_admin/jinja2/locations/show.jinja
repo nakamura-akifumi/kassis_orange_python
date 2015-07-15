@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}詳細{% endblock title %}
+
+{% block content %}
+<div class="row">
+<div class="col-md-9">
+
+  <h2>詳細情報</h2>
+  <table class="table">
+      <tbody>
+        <tr>
+          <td>ロケーションID</td>
+          <td>{{ u.id }}</td>
+        </tr>
+        <tr>
+          <td>ロケーション名</td>
+          <td>{{ u.name }}</td>
+        </tr>
+        <tr>
+          <td>情報作成日時</td>
+          <td>{{ u.created_at|datetimeformat }}</td>
+        </tr>
+        <tr>
+          <td>情報更新日時</td>
+          <td>{{ u.updated_at|datetimeformat }}</td>
+        </tr>
+
+      </tbody>
+  </table>
+</div>
+<div class="col-md-3">
+  <form class="well form-horizontal" action="{{ url('location', pk = u.record_identifier) }}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="削除">
+  </form>
+
+</div>
+</div>
+{% endblock content %}

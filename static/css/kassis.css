@@ -1,0 +1,45 @@
+.body {
+    background-color: white;
+}
+.navbar-nav > li > a, .navbar-brand {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 10px 15px;
+    position: relative;
+    display: block;
+}
+.navbar {
+    position:relative;
+    min-height: 44px;
+    background-color: DarkOrange;
+    margin-bottom: 2px;
+}
+.navbar-header {
+    position:absolute;
+    width: 100%;
+    min-height: 44px;
+}
+.navbar-header > ul > li {
+    list-style:none;
+    padding-right: 10px;
+}
+.navbar-header > ul > li > a {
+    border: none;
+}
+.alert {
+    padding: 6px;
+    margin-bottom: 2px;
+}
+.alert-wrap {
+    margin-bottom: 18px;
+}
+.biblio-image {
+    text-align: center;
+}
+.biblio-image > image {
+    border: 1px;
+}
+.biblio-image > p {
+    font-size: 9px;
+}
+

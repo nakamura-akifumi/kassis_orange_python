@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}利用者の新規作成{% endblock title %}
+
+{% block content %}
+  <form class="well form-horizontal" action="{{ url('users') }}" method="POST">
+    <fieldset>
+      <div class="form-group">
+        <div class="col-sm-12">
+          {% csrf_token %}
+          <input type="hidden" name="_method" value="NEW">
+
+          {% include "users/form_block.jinja" %}
+
+          <input type="submit" value="利用者を登録する（取消は出来ません）">
+        </div>
+      </div>
+    </fieldset>
+  </form>
+{% endblock content %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}資料の一覧{% endblock title %}
+
+{% block content %}
+
+  {% include "search/search_word_block.jinja" %}
+
+    検索結果: {{ page.search_result_count }} 件
+    <br />
+    <br />
+
+  {% if page.search_result_count == 0 %}
+    結果がありませんでした。
+  {% else %}
+
+  {% include "search/pagination_block.jinja" %}
+
+    <select id="o1" class="selectpicker" name="o1" onchange="perPageChange(this);">
+    {% for o in page.o1list %}
+      <option value="{{ o.key }}" {% if o.key == page.o1 %} selected {% endif %}>{{ o.display_name }}</option>
+    {% endfor %}
+    </select>
+
+    <select id="o2" class="selectpicker" name="o2" onchange="sortChange(this);">
+      {% for o in page.o2list %}
+      <option value="{{ o.key }}" {% if o.key == page.o2 %} selected {% endif %}>{{ o.display_name }}</option>
+      {% endfor %}
+    </select>
+
+    <table class="table table-striped table-bordered">
+      <tbody>
+        {% for m in manifestations %}
+        <tr>
+          <td>
+            <a href="{{ url('m_show', m_id=m.record_identifier) }}">{{ m.title }}</a>
+            {% if 'series_title' in m %}
+              {{ m.series_title }}
+            {% endif %}
+            <br />
+            {% for a in m.desc_creators %}
+              {{ a.full_name }} {{ a.role }}
+            {% endfor %} /
+            {% for a in m.publishers %}
+              {{ a.full_name }}
+            {% endfor %}
+          </td>        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  {% include "search/pagination_block.jinja" %}
+  {% endif %}
+
+{% endblock content %}
