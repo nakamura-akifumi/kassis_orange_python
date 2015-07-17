@@ -147,8 +147,6 @@ TEMPLATE_LOADERS = (
 RIAK = {
     "STORE_BUCKET_TYPE": "kassis_index",
     "STORE_BUCKET": "manifestations",
-    "COUNTER_BUCKET_TYPE": "counters",
-    "COUNTER_BUCKET": "manifestations"
 }
 
 AUTH_PROFILE_MODULE = 'app_accounts.UserProfile'

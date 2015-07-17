@@ -6,6 +6,7 @@ import isbnlib
 import msgpack
 from app_search.helpers.date_helper import DateHelper
 from app_search.helpers.solr_helper import SolrHelper
+from kassis_numbering import KassisNumbering
 
 class Manifestation:
     CounterBucketName = "manifestations"
@@ -117,13 +118,7 @@ class Manifestation:
 
         else:
             # insert
-            # TODO: ほんとうのunique番号の生成方法（現状だと同時アクセス時にconflictする）
-            # TODO: 採番クラス用意する。
-            counter_bucket = self.client.bucket_type(settings.RIAK["COUNTER_BUCKET_TYPE"]).bucket(settings.RIAK["COUNTER_BUCKET"])
-            counter = Counter(counter_bucket, Manifestation.CounterBucketName)
-            counter.increment()
-            counter.store()
-            self.key = str(counter.value)
+            self.key = KassisNumbering.numbering("M")
             print("new record: generate key=%s" % (str(self.key)))
 
             self.meta["record_identifier"] = self.key
