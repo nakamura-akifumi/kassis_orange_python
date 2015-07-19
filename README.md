@@ -47,13 +47,6 @@ kassis orange は、2015年5月から開発をしているWebアプリ型の資�
 
 forkして修正したらpull requestしてください。
 
-純粋なプログラマー以外にも以下に関する方を大募集中です。
-・全体のUIデザインを行って頂ける方。
-・英語に翻訳して頂ける方。
-・OpenSearch、ResouceSync、OAI-PMH に詳しい方。
-・（専門図書館、公共図書館に知識をお持ちの）実際に使ってご意見を頂ける方。
-・蔵書点検に詳しいかた。蔵書点検用の機材をお貸して頂ける方。
-
 ## ライセンス / License
 
 [AGPLv3](https://raw.githubusercontent.com/nakamura-akifumi/kassis_orange/master/LICENSE)

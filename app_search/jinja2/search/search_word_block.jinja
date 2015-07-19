@@ -3,7 +3,7 @@
     検索語を入力
       <div class="form-group">
         <div class="col-sm-12">
-          <input type="text" class="form-control" id="q" name="q" value="{{ page.q }}" size="24" placeholder="検索語" autofocus>
+          <input type="text" class="form-control" id="q" name="q" {% if page is defined %} value="{{ page.q }}" {% endif %} size="24" placeholder="検索語" autofocus>
           <input type="submit" value="検索" class="btn btn-primary">
         </div>
       </div>

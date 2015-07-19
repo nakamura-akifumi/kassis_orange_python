@@ -4,14 +4,17 @@
 .navbar-nav > li > a, .navbar-brand {
     margin-top: 0px;
     margin-bottom: 0px;
-    padding: 10px 15px;
+    padding: 2px 15px;
     position: relative;
     display: block;
 }
+.navbar-nav {
+    margin-top: 8px;
+}
 .navbar {
     position:relative;
-    min-height: 44px;
-    background-color: DarkOrange;
+    min-height: 48px;
+    background-color: white;
     margin-bottom: 2px;
 }
 .navbar-header {
@@ -41,5 +44,15 @@
 }
 .biblio-image > p {
     font-size: 9px;
+}
+.navbar-center > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.navbar-center > p {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
